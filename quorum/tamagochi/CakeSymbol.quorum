@@ -1,0 +1,15 @@
+use Libraries.Compute.Random
+
+class CakeSymbol is Symbol
+    
+    private Random random
+
+    action ApplyToPet
+        parent:Symbol:ApplyToPet()
+
+        if random:RandomInteger(100) < 30
+            Pet pet = parent:Symbol:pet
+            pet:SetStatus(pet:STATUS_SICK, 15)
+        end
+    end
+end

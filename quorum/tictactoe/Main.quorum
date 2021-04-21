@@ -1,0 +1,270 @@
+use Libraries.Game.Game
+use Libraries.Game.Graphics.Drawable
+use Libraries.Game.Graphics.Color
+use Libraries.Game.Graphics.Label
+use Libraries.Containers.Array
+use Libraries.Interface.Controls.Button
+use Libraries.Interface.Events.MouseEvent
+use Libraries.Interface.Events.MouseListener
+use Libraries.Interface.Behaviors.Behavior
+use Libraries.Interface.Events.BehaviorEvent
+use Libraries.Interface.Item
+use Libraries.Interface.Item2D
+use Libraries.Language.Errors.CastError
+
+
+class Main is Game, MouseListener, Behavior
+    /*
+        This action, Main, starts our computer program. In Quorum, programs always
+        begin from Main.
+    */
+    constant integer WIDTH = 500
+    constant integer HEIGHT = 500
+
+    constant integer FIELD_SIZE = 90
+    constant integer FIELD_BORDER = 5
+    constant integer OFFSET = FIELD_SIZE + 3 * FIELD_BORDER
+    constant integer SYMBOL_SIZE = 80
+    constant integer GAME_OVER_FONT_SIZE = 30
+    constant Color FIELD_COLOR
+    
+    constant Color DRAW_COLOR
+    constant Color PLAYER_X_COLOR
+    constant Color PLAYER_O_COLOR
+
+
+    text player = "X"
+    Array<Array<Field>> fields
+    boolean gameOver = false
+    Label gameLabel
+    Button replayButton
+
+
+    action Main
+        SetScreenSize(WIDTH, HEIGHT)
+        SetGameName("Tic Tac Toe")
+        StartGame()
+    end
+
+    action CreateGame
+        CreateColors()
+        CreateGameLabel()
+        CreateReplayButton()
+        CreateTicTacToe()
+    end
+
+    action CreateColors
+        FIELD_COLOR:SetColor(0.4, 0.8, 1.0, 1.0)
+        PLAYER_X_COLOR:SetColor(1.0, 0.0, 0.0, 1.0)
+        PLAYER_O_COLOR:SetColor(0.0, 0.0, 1.0, 1.0)
+        DRAW_COLOR:SetColor(0.0, 0.0, 0.0, 1.0)
+    end
+
+    action CreateGameLabel
+        gameLabel:SetFontSize(GAME_OVER_FONT_SIZE)
+        gameLabel:SetY(HEIGHT - 75)
+        SetPlayerTurnText()
+        Add(gameLabel)
+    end
+
+    action CenterItem2DHorizontally(Item2D item)
+        number w = item:GetWidth()
+        item:SetX(WIDTH / 2 - w / 2)
+    end
+
+    action CreateReplayButton
+        replayButton:SetName("Nochmal Spielen")
+        replayButton:SetWidth(200)
+        replayButton:SetHeight(100)
+        replayButton:SetY(50)
+        CenterItem2DHorizontally(replayButton)
+        replayButton:SetBehavior(me)
+        replayButton:Hide()
+        Add(replayButton)
+    end
+
+    action CreateTicTacToe
+        integer y = 0
+        repeat until y = 3
+            integer x = 0
+            Array<Field> row
+            repeat until x = 3
+                Field field
+                field:Initialize(FIELD_SIZE, SYMBOL_SIZE, FIELD_COLOR, PLAYER_X_COLOR, PLAYER_O_COLOR)
+                integer px = OFFSET + x * (FIELD_SIZE + FIELD_BORDER)
+                integer py = OFFSET + y * (FIELD_SIZE + FIELD_BORDER)
+                field:SetPosition(px, py)
+                field:AddMouseListener(me)
+                Add(field)
+                row:Add(field)
+                x = x + 1
+            end
+            fields:Add(row)
+            y = y + 1
+        end
+    end
+
+    action ClickedMouse(MouseEvent event)   
+        Item source = event:GetSource()
+        if not gameOver
+            Field field = cast(Field, source)
+            if field:GetSymbol() = ""
+                field:SetSymbol(player)
+                endCondition = CheckEndCondition()
+                if endCondition not= undefined
+                    gameOver = true
+                    player = endCondition
+                    GameOver()
+                else
+                    AlternatePlayer()
+                end
+            end
+        end
+    end
+
+    action Run(BehaviorEvent event)
+        Reset()
+    end
+
+    action Reset
+        integer y = 0
+        repeat until y = 3
+            integer x = 0
+            repeat until x = 3
+                Field f = fields:Get(y):Get(x)
+                f:Clear()
+                x = x + 1
+            end
+            y =  y + 1
+        end
+        player = "X"
+        gameOver = false
+        replayButton:Hide()
+        SetPlayerTurnText()
+    end
+
+    /*
+        Überprüft die Tic-Tac-Toe Felder auf eine Endbedingung.
+        Rückgaben:
+            undefined => Das Spiel ist noch nicht vorbei
+            "X" => Spieler X hat gewonnen
+            "O" => Spieler O hat gewonnen
+            ""  => Unentschieden
+    */
+    action CheckEndCondition returns text
+        boolean hasNoEmptyField = true
+        text playerWonDiag1 = fields:Get(0):Get(0):GetSymbol()
+        text playerWonDiag2 = fields:Get(0):Get(2):GetSymbol()
+        integer i = 0
+        repeat until i = 3  
+            text symbolDiag1 = fields:Get(i):Get(i):GetSymbol()
+            if playerWonDiag1 = symbolDiag1
+                playerWonDiag1 = symbolDiag1
+            else
+                playerWonDiag1 = ""
+            end
+
+            text symbolDiag2 = fields:Get(i):Get(2-i):GetSymbol()
+            if playerWonDiag2 = symbolDiag2
+                playerWonDiag2 = symbolDiag2
+            else
+                playerWonDiag2 = ""
+            end
+
+            
+            text playerWonRow = fields:Get(i):Get(0):GetSymbol()
+            text playerWonCol = fields:Get(0):Get(i):GetSymbol()
+
+            integer j = 1
+            
+            repeat until j = 3
+                text symbolRow = fields:Get(i):Get(j):GetSymbol()
+                if hasNoEmptyField and symbolRow = ""
+                    hasNoEmptyField = false
+                end
+
+                if playerWonRow = symbolRow
+                    playerWonRow = symbolRow
+                else
+                    playerWonRow = ""
+                end
+
+                text symbolCol = fields:Get(j):Get(i):GetSymbol()
+                if playerWonCol = symbolCol
+                    playerWonCol = symbolCol
+                else
+                    playerWonCol = ""
+                end
+
+                j = j + 1
+            end
+
+            if playerWonRow not= ""
+                return playerWonRow
+            end
+
+            if playerWonCol not= ""
+                return playerWonCol
+            end
+
+            i = i + 1
+        end
+
+        if playerWonDiag1 not= ""
+            return playerWonDiag1
+        end
+
+        if playerWonDiag2 not= ""
+            return playerWonDiag2
+        end
+
+        if hasNoEmptyField
+            return ""
+        end
+
+        return undefined
+    end
+
+    action SetGameLabelText(text str)
+        gameLabel:SetText(str)
+        CenterItem2DHorizontally(gameLabel)
+    end
+
+    action SetPlayerTurnText
+        SetGameLabelText("Spieler " + player + " ist dran!")
+        if player = "X"
+            gameLabel:SetColor(PLAYER_X_COLOR)
+        else
+            gameLabel:SetColor(PLAYER_O_COLOR)
+        end
+    end
+
+    action AlternatePlayer
+        if player = "X"
+            player = "O"
+        else
+            player = "X"
+        end
+        SetPlayerTurnText()
+    end
+
+    action GameOver
+        if player = ""
+            SetGameLabelText("Unentschieden!")
+            gameLabel:SetColor(DRAW_COLOR)
+        else
+            SetGameLabelText("Spieler " + player + " hat gewonnen!")
+            if player = "X"
+                gameLabel:SetColor(PLAYER_X_COLOR)
+            else
+                gameLabel:SetColor(PLAYER_O_COLOR)
+            end
+        end
+        replayButton:Show()
+    end
+
+    action Update(number time)
+
+    end
+end
+

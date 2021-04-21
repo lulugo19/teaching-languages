@@ -1,0 +1,49 @@
+use Libraries.Game.Graphics.Drawable
+use Libraries.Interface.Events.MouseListener
+use Libraries.Interface.Events.MouseEvent
+use Libraries.Game.Graphics.Color
+
+class Symbol is Drawable, MouseListener
+    private Drawable cross
+
+    private integer loveChange = 0
+    private integer energyChange = 0
+    private boolean enabled = true
+    private Pet pet
+
+    action Create(Pet pet, integer loveChange, integer energyChange)
+        me:pet = pet
+        me:loveChange = loveChange
+        me:energyChange = energyChange
+        SetOriginCenter()
+        cross:Load("../../assets/tamagochi/cross.png")
+        cross:Hide()
+        Add(cross)
+        AddMouseListener(me)
+    end
+
+    action ApplyToPet
+        pet:ChangeEnergy(energyChange)
+        pet:ChangeLove(loveChange)
+    end
+
+    action ClickedMouse(MouseEvent event)
+        if enabled
+            ApplyToPet()
+        end
+    end
+
+    action IsEnabled returns boolean
+        return enabled
+    end
+
+    action Enable
+        enabled = true
+        cross:Hide()
+    end
+
+    action Disable
+        enabled = false
+        cross:Show()
+    end
+end

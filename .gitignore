@@ -1,0 +1,6 @@
+# ignore Run and Build directories for Quorum
+**/Build
+**/Run
+
+# ignore pyret directory
+**/.pyret

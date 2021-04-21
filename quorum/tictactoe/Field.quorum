@@ -1,0 +1,90 @@
+use Libraries.Game.Graphics.Drawable
+use Libraries.Game.Graphics.Color
+use Libraries.Interface.Events.MouseListener
+use Libraries.Interface.Events.MouseEvent
+
+class Field is Drawable, MouseListener
+     private integer size = 90
+     private integer symbolSize = 80
+     
+     private text symbol = ""
+
+     private Color playerXColor
+     private Color playerOColor
+
+     action Initialize(
+          integer size, 
+          integer symbolSize, 
+          Color backgroundColor, 
+          Color playerXColor,
+          Color playerOColor)
+         
+         me:playerXColor = playerXColor
+         me:playerOColor = playerOColor
+         LoadFilledRectangle(size, size, backgroundColor)
+         AddMouseListener(me)
+     end
+
+     action SetSymbol(text symbol)
+          if GetItemCount() > 0
+               alert("There is already a symbol on this field")
+          end
+          me:symbol = symbol
+          if symbol = "X"
+               Add(CreateCross())
+          elseif symbol = "O"
+               Add(CreateCircle())
+          else
+               alert("Invalid symbol!")
+          end
+     end
+
+     action GetSymbol returns text
+          return symbol
+     end
+
+     action Clear()
+          symbol = ""
+          if GetItemCount() > 0
+               Remove(0)
+          end
+     end
+
+     private action ClickedMouse(MouseEvent event)
+          event:SetSource(me)
+     end
+
+     private action CreateCross returns Drawable
+          Drawable cross
+
+          integer symbolPadding = (size - symbolSize) / 2
+
+          cross:SetWidth(symbolSize)
+          cross:SetHeight(symbolSize)
+          cross:SetPosition(symbolPadding, symbolPadding)
+
+          Drawable line1
+          line1:LoadLine(symbolSize, symbolSize, playerXColor)
+
+          Drawable line2
+          line2:Load(line1)
+          line2:FlipY()
+          line2:SetColor(playerXColor)
+
+          cross:Add(line1)
+          cross:Add(line2)
+
+          return cross
+     end
+
+     private action CreateCircle returns Drawable
+          Drawable circle
+
+          integer symbolPadding = (size - symbolSize) / 2
+
+          circle:LoadCircle(symbolSize / 2, playerOColor)
+          circle:SetPosition(symbolPadding, symbolPadding)
+
+          return circle
+     end
+end

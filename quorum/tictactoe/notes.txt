@@ -1,0 +1,4 @@
+Da event:GetSource() nicht das Feld, sondern das Symbol zurückgibt, wird dem Feld intern auch ein Maus-Listener hinzugefügt, der Source überschreibt.
+
+Fehlermeldungen:
+- Main.quorum, Line 75, Column 13: I could not locate a type named bool. Did you forget a use statement?

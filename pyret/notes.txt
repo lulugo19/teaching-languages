@@ -1,0 +1,33 @@
+Positiv:
+- Unit Tests
+- Type Annotationen optional (Gradual Typed), ideal zum Prototyping
+- Sum-Types, Pattern-Matching
+- gut ausgewählte Syntax
+- Fehlermeldungen werden gut angezeigt, mit Stack-Trace
+- Fehlermeldungen mit Farben, sehr verständlich
+- Fehlerposition wird im Quellcode angezeigt
+- Schneller Start, Web-Editor
+- Wenn man auf Fehlermeldung klickt, dann wird diese im Editor hervorgehoben
+- interaktive Konsole, zum inspecten den Codes
+- Web-Editor mit interaktiver Konsole
+- Google-Drive-Integration
+- keine Operator-Precedence
+- automatische Predecate-Funktionen bei Sum-Type
+- Currying, Function-Application
+- Easy Program Sharing
+- Bereichsmarkierungen wo ein Block startet und aufhört
+
+Negativ:
+- Konflikt zwischen Variablennamen und Datenkonstruktor
+- manuelle Checken der Maus-Position beim Klick-Handling
+- unübersichtlich, Funktionen überall
+- kein Refactoring
+- statischer Type-Checker nicht komplett, Type-Soundness
+- 2 Syntaxen für Lambdas
+- Reihenfolge, wo etwas deklariert ist, ist wichtig, ein Identifier kann nicht benutzt werden, 
+wenn er weiter oben nicht deklariert wurden ist, nur Function Hoisting
+- keine Buttons in der Standardbibliothek
+- kein Minus-Zeichen vor Identifier, stattdessen muss mit -1 multipliziert werden
+- kein Sound, keine Animationen
+- kein Intellisense
+- kein verschachteltes Pattern-Matching

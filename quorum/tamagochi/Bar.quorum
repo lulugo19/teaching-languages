@@ -1,0 +1,52 @@
+use Libraries.Game.Graphics.Drawable
+use Libraries.Game.Graphics.Color
+use Libraries.Game.Graphics.Label
+use Libraries.Compute.Math
+
+class Bar is Drawable
+    private Math math
+    
+    private integer width = 0
+    private integer height = 0
+    private number percent = 100
+    private Drawable fill
+    private text labelText = ""
+    private Label label
+
+
+    action Create(
+        integer width, 
+        integer height, 
+        Color backColor, 
+        Color fillColor, 
+        Color borderColor,
+        text labelText)
+        
+        me:width = width
+        me:height = height
+        me:labelText = labelText
+        LoadFilledRectangle(width, height, backColor)
+        
+        fill:LoadFilledRectangle(width, height, fillColor)
+        Add(fill)
+
+        label:SetText(labelText + ": 100 %")
+        label:SetPosition(width / 2 - label:GetWidth() / 2, height / 2 - label:GetHeight() / 2)
+        Add(label)
+        
+        Drawable border
+        border:LoadRectangle(width, height, borderColor)
+        Add(border)
+    end
+
+    action GetPercent returns number
+        return percent
+    end
+    
+    action SetPercent(number percent)
+        me:percent = percent
+        number fillWidth = percent / 100 * width
+        fill:SetWidth(fillWidth:GetInteger())
+        label:SetText(labelText + ": " + math:Round(percent):GetInteger():GetText() + " %")
+    end
+end

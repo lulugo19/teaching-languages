@@ -1,0 +1,40 @@
+use Libraries.Containers.Array
+use Libraries.Game.Graphics.Drawable
+
+class SpriteAnimation is Drawable
+  private Array<Drawable> sprites
+  private number fps = 4
+
+  private number elapsedTime = 0
+  private integer frameIndex = 0
+
+  action SetFPS(number fps)
+    me:fps = fps
+  end
+
+  action GetFPS returns number
+    return fps
+  end
+
+  action GetSprites returns Array<Drawable>
+    return sprites
+  end
+
+  action Create(Array<Drawable> sprites, number fps)
+    me:sprites = sprites
+    me:fps = fps
+    if sprites:GetSize() = 0
+      alert("There must be at least one sprite!")
+    end
+    Load(sprites:Get(frameIndex))
+  end
+
+  action Update(number seconds)
+    elapsedTime = elapsedTime + seconds
+    if elapsedTime >= 1/fps
+      frameIndex = (frameIndex + 1) mod sprites:GetSize()
+      Load(sprites:Get(frameIndex))
+      elapsedTime = elapsedTime - 1/fps
+    end
+  end
+end

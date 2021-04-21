@@ -1,0 +1,135 @@
+use Libraries.Containers.Array
+use Libraries.Game.Game
+use Libraries.Game.Graphics.Drawable
+use Libraries.Game.Graphics.Label
+use Libraries.Game.Graphics.Color
+use Libraries.Interface.Controls.Button
+use Libraries.Interface.Behaviors.Behavior
+use Libraries.Interface.Events.BehaviorEvent
+
+class Main is Game, PetListener, Behavior
+
+    constant integer HEIGHT = 600
+    constant integer WIDTH = 400
+
+    Color color
+
+    Pet pet
+    Bar loveBar
+    Bar energyBar
+    Label secondsAliveLabel
+    Symbol heart
+    Symbol broccoli
+    CakeSymbol cake
+    Button playAgainButton
+
+    action Main
+        SetGameName("Tamagochi")
+        SetScreenSize(WIDTH, HEIGHT)
+        StartGame()
+    end
+
+    action CreateGame
+        CreateBars()
+        CreatePet()
+        CreateSymbols()
+        CreateSecondsAliveLabel()
+        CreatePlayAgainButton()
+    end
+
+    action CreatePet
+        pet:Create()
+        pet:SetCenter(WIDTH / 2, 200)
+        pet:AddPetListener(me)
+        Add(pet)
+    end
+
+    action CreateBars
+        loveBar:Create(300, 30, color:White(), color:Red(), color:Black(), "Love")
+        energyBar:Create(300, 30, color:White(), color:Orange(), color:Black(), "Energy")
+        
+        loveBar:SetCenter(WIDTH / 2, HEIGHT - 30)
+        energyBar:SetCenter(WIDTH / 2, HEIGHT - 70)
+
+        loveBar:SetPercent(50)
+        energyBar:SetPercent(50)
+        
+        Add(loveBar)
+        Add(energyBar)
+    end
+
+    action CreateSymbols
+        heart:Load("../../assets/tamagochi/heart.png")
+        broccoli:Load("../../assets/tamagochi/broccoli.png")
+        cake:Load("../../assets/tamagochi/cake.png")
+
+        heart:Create(pet, 10, -15)
+        broccoli:Create(pet, -10, 15)
+        cake:Create(pet, 0, 15)
+
+        heart:SetPosition(40, 400)
+        broccoli:SetPosition(150, 400)
+        cake:SetPosition(260, 400)
+
+        Add(heart)
+        Add(broccoli)
+        Add(cake)
+    end
+
+    action CreatePlayAgainButton
+        playAgainButton:SetName("Nochmal Spielen")
+        playAgainButton:SetSize(200, 50)
+        playAgainButton:SetCenter(WIDTH / 2, 30)
+        playAgainButton:Hide()
+        playAgainButton:SetBehavior(me)
+        Add(playAgainButton)
+    end
+
+    action CreateSecondsAliveLabel
+        secondsAliveLabel:SetFontSize(30)
+        secondsAliveLabel:SetText("10 s")
+        secondsAliveLabel:SetPosition(WIDTH / 2 - secondsAliveLabel:GetWidth() / 2, 250)
+        secondsAliveLabel:Hide()
+        Add(secondsAliveLabel)
+    end
+
+    action Update(number seconds)
+        pet:Update(seconds)
+    end
+
+    // Reset Game
+    action Run(BehaviorEvent event)
+        pet:Reset()
+        playAgainButton:Hide()
+        secondsAliveLabel:Hide()
+    end
+
+    action OnPetLoveChanged(number newLove)
+        loveBar:SetPercent(newLove)
+    end
+
+    action OnPetEnergyChanged(number newEnergy)
+        energyBar:SetPercent(newEnergy)
+    end
+
+    action OnPetStatusChanged(integer newStatus)
+        if newStatus = pet:STATUS_ASLEEP or newStatus = pet:STATUS_DEAD
+            cake:Disable()
+            broccoli:Disable()
+            heart:Disable()
+        elseif newStatus = pet:STATUS_SICK
+            cake:Disable()
+            heart:Disable()
+        elseif newStatus = pet:STATUS_NORMAL
+            cake:Enable()
+            broccoli:Enable()
+            heart:Enable()
+        end
+
+        if newStatus = pet:STATUS_DEAD
+            secondsAliveLabel:SetText(pet:GetSecondsAlive():GetText() + " s")
+            secondsAliveLabel:Show()
+            playAgainButton:Show()
+        end
+    end
+end

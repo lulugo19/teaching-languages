@@ -1,0 +1,247 @@
+use Libraries.Containers.Array
+use Libraries.Game.Game
+use Libraries.Game.Graphics.Drawable
+use Libraries.Interface.Events.KeyboardListener
+use Libraries.Interface.Events.KeyboardEvent
+use Libraries.Interface.Events.CollisionListener2D
+use Libraries.Interface.Events.CollisionEvent2D
+use Libraries.Game.Graphics.Label
+use Libraries.Interface.Controls.Button
+use Libraries.Interface.Behaviors.Behavior
+use Libraries.Interface.Events.BehaviorEvent
+use Libraries.Compute.Vector2
+use Libraries.Compute.Random
+use Libraries.Compute.Math
+use Libraries.Game.DesktopConfiguration
+use Libraries.Sound.Audio
+use Libraries.System.File
+
+class Main is Game, KeyboardListener, CollisionListener2D, Behavior
+    constant integer WIDTH = 280
+    constant integer HEIGHT = 500
+    constant integer GRAVITY = 300
+    constant integer GAP_HEIGHT = 100
+    constant Vector2 FLY_VELOCITY
+    constant Vector2 FALL_VELOCITY
+
+    Random random
+    Math math
+
+    SpriteAnimation bird
+    Drawable topPipe
+    Drawable bottomPipe
+    Label scoreLabel
+    Label gameOverLabel
+    Button playAgainButton
+    integer score = 0
+    boolean gameOver = false
+
+    Audio pointAudio
+    Audio hitAudio
+    Audio wingAudio
+    Audio gameOverAudio
+
+    action Main
+        DesktopConfiguration conf
+        conf:targetFramesPerSecond = 30
+        conf:limitFramesPerSecond = true
+        conf:title = "Flappy Bird"
+        conf:width = WIDTH
+        conf:height = HEIGHT
+        conf:multipleKeyPressTimer = 0.5
+        conf:vSyncEnabled = true
+        conf:minimumFrameDelay = 0.0
+        
+        SetConfiguration(conf)
+        StartGame()
+    end
+
+    action CreateGame
+        // set Icon
+        File iconFile
+        iconFile:SetPath("../../assets/flappy-bird/sprites/bluebird-midflap.png")
+        SetApplicationIcon(iconFile)
+        
+        // Enable Gravity
+        EnablePhysics2D(true)
+        SetGravity2D(0, -GRAVITY)
+        
+        LoadAudio()
+
+        CreateBackground()
+        CreatePipes()
+        CreateBird()
+        CreateScoreLabel()
+        CreateGameOverLabel()
+        CreatePlayAgainButton()
+
+        // listen to keyboard input
+        AddKeyboardListener(me)
+
+        // check bird and pipe collision
+        AddCollisionListener(me)
+    end
+
+    action LoadAudio
+        wingAudio:Load("../../assets/flappy-bird/audio/wing.ogg")
+        pointAudio:Load("../../assets/flappy-bird/audio/point.ogg")
+        hitAudio:Load("../../assets/flappy-bird/audio/hit.ogg")
+        gameOverAudio:Load("../../assets/flappy-bird/audio/die.ogg")
+    end
+
+    action CreateBackground
+        Drawable background
+        background:Load("../../assets/flappy-bird/sprites/background-day.png")
+        Add(background)
+    end
+
+    action CreateScoreLabel
+        scoreLabel:SetFontSize(20)
+        scoreLabel:SetText("Score: 0")
+        scoreLabel:SetPosition(100, HEIGHT - 30)
+        Add(scoreLabel)
+    end
+
+    action CreateGameOverLabel
+        gameOverLabel:SetText("Score: 0")
+        gameOverLabel:SetFontSize(30)
+        gameOverLabel:SetPosition(80, 250)
+        gameOverLabel:Hide()
+        Add(gameOverLabel)
+    end
+
+    action CreatePlayAgainButton
+        playAgainButton:SetName("Nochmal Spielen!")
+        playAgainButton:SetSize(200, 50)
+        playAgainButton:SetPosition(70, 180)
+        playAgainButton:SetBehavior(me)
+        playAgainButton:Hide()
+        playAgainButton:SetFocusable(false)
+        Add(playAgainButton)
+    end
+
+    action CreateBird
+        Drawable midFlap
+        midFlap:Load("../../assets/flappy-bird/sprites/bluebird-midflap.png")
+        Drawable upFlap
+        upFlap:Load("../../assets/flappy-bird/sprites/bluebird-upflap.png")
+        Drawable downFlap
+        downFlap:Load("../../assets/flappy-bird/sprites/bluebird-upflap.png")
+
+        Array<Drawable> sprites
+        sprites:Add(midFlap)
+        sprites:Add(upFlap)
+        sprites:Add(midFlap)
+        sprites:Add(downFlap)
+
+        bird:Create(sprites, 3)
+        bird:SetPosition(50, HEIGHT / 2)
+        
+        // the bird reacts to gravity
+        bird:EnablePhysics(true)
+        bird:SetResponsive()
+        FLY_VELOCITY:Set(0, 200)
+        FALL_VELOCITY:Set(20, -400)
+        bird:SetAngularVelocity(-1.5)
+
+        Add(bird)
+    end
+
+    action CreatePipes
+        bottomPipe:Load("../../assets/flappy-bird/sprites/pipe-green.png")
+        topPipe:Load(bottomPipe)
+        topPipe:FlipY()
+        
+        bottomPipe:EnablePhysics(true)
+        bottomPipe:SetNonResponsive()
+        topPipe:EnablePhysics(true)
+        topPipe:SetNonResponsive()
+
+        Vector2 velocity
+        velocity:Set(-120, 0)
+        topPipe:SetLinearVelocity(velocity)
+        bottomPipe:SetLinearVelocity(velocity)
+
+        Add(topPipe)
+        Add(bottomPipe)
+
+        ResetPipes()
+    end
+
+    action ResetPipes
+        integer offset = random:RandomInteger(HEIGHT / 2)
+        bottomPipe:SetPosition(WIDTH, -offset)
+        topPipe:SetPosition(WIDTH, -offset + bottomPipe:GetHeight() + GAP_HEIGHT)
+    end
+
+    action Update(number time)
+        if not gameOver
+            // Animations Update
+            bird:Update(time)
+
+            // Der Vogel kann nicht aus dem oberen Rand rausfliegen
+            if bird:GetY() + bird:GetHeight() > HEIGHT
+                bird:SetY(HEIGHT - bird:GetHeight())
+            // Das Spiel ist vorbei, wenn der Vogel unten aus dem Bildschirm fällt
+            elseif bird:GetY() < -bird:GetHeight()
+                GameOver()
+            end
+
+            bird:SetRotation(math:MinimumOf(bird:GetRotation(), 80))
+
+            // Die Röhren werden nach rechts neu versetzt und Spieler bekommt dann einen Punkt
+            if topPipe:GetX() < -topPipe:GetWidth() and bird:IsResponsive()
+                pointAudio:Play()
+                score = score + 1
+                scoreLabel:SetText("Score: " + score:GetText())
+                ResetPipes()
+            end
+        end
+    end
+
+    action GameOver
+        gameOverAudio:Play()
+        gameOver = true
+        gameOverLabel:SetText(scoreLabel:GetText())
+        gameOverLabel:Show()
+        playAgainButton:Show()
+        scoreLabel:Hide()
+        bird:SetUnmovable()
+        topPipe:SetUnmovable()
+        bottomPipe:SetUnmovable()
+    end
+
+    // Das hier wird ausgeführt, wenn der "Nochmal Spielen"-Button gedrückt wird
+    action Run(BehaviorEvent event)
+        gameOver = false
+        gameOverLabel:Hide()
+        playAgainButton:Hide()
+        score = 0
+        scoreLabel:SetText("Score: 0")
+        scoreLabel:Show()
+        bird:SetPosition(50, HEIGHT / 2)
+        bird:GetLinearVelocity():SetZero()
+        bird:SetRotation(0)
+        bird:SetResponsive()
+        bottomPipe:SetNonResponsive()
+        topPipe:SetNonResponsive()
+        ResetPipes()
+    end
+
+    action BeginCollision(CollisionEvent2D event)
+        if bird:IsResponsive()
+            hitAudio:Play()
+            bird:SetNonResponsive()
+            bird:SetLinearVelocity(FALL_VELOCITY)
+            bird:SetRotation(80)
+        end
+    end
+
+    action PressedKey(KeyboardEvent event)
+        if bird:IsResponsive() and event:keyCode = event:SPACE
+            wingAudio:Play()
+            bird:SetLinearVelocity(FLY_VELOCITY)
+            bird:SetRotation(-70)
+        end
+    end
+end

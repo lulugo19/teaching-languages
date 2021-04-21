@@ -1,0 +1,147 @@
+use Libraries.Game.Graphics.Drawable
+use Libraries.Compute.Math
+use Libraries.Containers.Array
+use Libraries.Containers.Iterator
+use Libraries.Game.Graphics.Label
+
+class Pet is Drawable
+    public constant integer STATUS_NORMAL = 0
+    public constant integer STATUS_ASLEEP = 1
+    public constant integer STATUS_SICK = 2
+    public constant integer STATUS_DEAD = 3
+  
+    private Math math
+
+    constant Array<Drawable> STATUS_IMAGES
+    private integer status = STATUS_NORMAL
+    private number remainingDebuffTime = 0
+    private number secondsAlive = 0
+    
+    private Array<PetListener> listeners
+    
+    private number love = 75
+    private number energy = 75
+    private Label secondsAliveLabel 
+
+    action Create
+        LoadStatusImages()
+        Reset()
+    end
+
+    action LoadStatusImages
+        Drawable normal
+        normal:Load("../../assets/tamagochi/pet.png")
+        Drawable asleep
+        asleep:Load("../../assets/tamagochi/pet-asleep.png")
+        Drawable sick
+        sick:Load("../../assets/tamagochi/pet-sick.png")
+        
+        Drawable dead
+        dead:Load("../../assets/tamagochi/pet-dead.png")
+        dead:Add(secondsAliveLabel)
+
+        STATUS_IMAGES:Add(normal)
+        STATUS_IMAGES:Add(asleep)
+        STATUS_IMAGES:Add(sick)
+        STATUS_IMAGES:Add(dead)
+    end
+
+    action AddPetListener(PetListener listener)
+        listeners:Add(listener)
+    end
+
+    action RemovePetListener(PetListener listener)
+        listeners:Remove(listener)
+    end 
+
+    action SetStatus(integer status, number debuffTime)
+        me:status = status
+        remainingDebuffTime = debuffTime
+        Load(STATUS_IMAGES:Get(status))
+
+        Iterator<PetListener> it = listeners:GetIterator()
+        repeat while it:HasNext()
+            it:Next():OnPetStatusChanged(status)
+        end
+    end
+
+    action GetEnergy returns integer
+        return math:Round(energy):GetInteger()
+    end
+
+    private action SetEnergy(number energy)
+        me:energy = Clamp(energy, 0, 100)
+        Iterator<PetListener> it = listeners:GetIterator()
+        repeat while it:HasNext()
+            it:Next():OnPetEnergyChanged(energy)
+        end
+        
+        if energy <= 10
+            SetStatus(STATUS_ASLEEP, 10)
+        end
+    end
+
+    action ChangeEnergy(number change)
+        SetEnergy(energy + change)
+    end
+
+    action GetLove returns integer
+        return math:Round(love):GetInteger()
+    end
+
+    private action SetLove(number love)
+        me:love = Clamp(love, 0, 100)
+
+        Iterator<PetListener> it = listeners:GetIterator()
+        repeat while it:HasNext()
+            it:Next():OnPetLoveChanged(love)
+        end
+
+        if love <= 0
+            secondsAliveLabel:SetText(secondsAlive:GetText() + " s")
+            SetStatus(STATUS_DEAD, 0)
+        end
+    end
+
+    action ChangeLove(number change)
+        SetLove(love + change)
+    end
+
+    action GetSecondsAlive returns integer
+        return math:Round(secondsAlive):GetInteger()
+    end
+
+    action Update(number seconds)
+        if status not= STATUS_DEAD
+            secondsAlive = secondsAlive + seconds
+            
+            number energyFactor = -1
+            if status = STATUS_ASLEEP
+                energyFactor = 2
+            elseif status = STATUS_SICK
+                energyFactor = -3
+            end
+            
+            if status not= STATUS_NORMAL
+                remainingDebuffTime = remainingDebuffTime - seconds
+                if remainingDebuffTime <= 0
+                    SetStatus(STATUS_NORMAL, 0)
+                end
+            end
+
+            ChangeLove(-seconds)
+            ChangeEnergy(seconds * energyFactor)
+        end
+    end
+
+    private action Clamp(number n, number min, number max) returns number
+        return math:MinimumOf(max, math:MaximumOf(min, n))
+    end
+
+    action Reset
+        secondsAlive = 0
+        SetEnergy(75)
+        SetLove(75)
+        SetStatus(STATUS_NORMAL, 0)
+    end
+end

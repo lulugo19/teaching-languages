@@ -1,0 +1,13 @@
+Positiv:
+
+
+Negativ:
+- IDE ist buggy und stürzt ab, darum ohne IDE was so "Mäh" ist
+- Kann die Größe von Buttons nicht verändern
+- Dokumentation ist schlecht navigierbar, keine Suchleiste oder Seitenleiste
+- Kein "break" oder "continue" in Schleifen
+
+
+Fehlermeldungen:
+Line 115, Column 8: In order to return a value of type  "Libraries.Game.Graphics.Drawable" 
+from this action, I think we need the phrase "returns Libraries.Game.Graphics.Drawable" before the body.

@@ -1,0 +1,13 @@
+class PetListener
+  action OnPetLoveChanged(number love)
+
+  end
+  
+  action OnPetEnergyChanged(number energy)
+
+  end
+
+  action OnPetStatusChanged(integer status)
+
+  end
+end
