@@ -2,3 +2,7 @@ Da event:GetSource() nicht das Feld, sondern das Symbol zurückgibt, wird dem Fe
 
 Fehlermeldungen:
 - Main.quorum, Line 75, Column 13: I could not locate a type named bool. Did you forget a use statement?
+
+Probleme:
+Beim Kompilieren mit `quorum Main.quorum *.quorum` unerwartete Fehlermeldung:
+Line 155, Column 8: I cannot execute this statement, as we have already returned from this action.

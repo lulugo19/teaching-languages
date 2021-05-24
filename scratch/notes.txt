@@ -1,0 +1,4 @@
+- Keine Rückgabewerte
+- viele globale Variablen
+- es ist ungewöhnt und schwerer "Clean Code" zu schreiben
+- es ist aufwending, ein Tutorial in Textform zu schreiben

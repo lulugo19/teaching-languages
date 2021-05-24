@@ -6,6 +6,7 @@ Negativ:
 - Kann die Größe von Buttons nicht verändern
 - Dokumentation ist schlecht navigierbar, keine Suchleiste oder Seitenleiste
 - Kein "break" oder "continue" in Schleifen
+- Kein "return" ohne Rückgabewert
 
 
 Fehlermeldungen:

@@ -18,26 +18,28 @@ EMPTY-SCENE = I.empty-scene(WIDTH, HEIGHT)
 X-COLOR = "red"
 O-COLOR = "blue"
 
-X-SYMBOL = I.add-line(I.add-line(
+#|
+   X-SYMBOL = I.add-line(I.add-line(
     I.empty-image,
     0, 0, FIELD-SYMBOL-SIZE, FIELD-SYMBOL-SIZE, X-COLOR),
   0, FIELD-SYMBOL-SIZE, FIELD-SYMBOL-SIZE, 0, X-COLOR)
+|#
+
+X-SYMBOL = I.empty-image ^ 
+I.add-line(_, 0, 0, FIELD-SYMBOL-SIZE, FIELD-SYMBOL-SIZE, X-COLOR) ^
+I.add-line(_, FIELD-SYMBOL-SIZE, 0, 0, FIELD-SYMBOL-SIZE, X-COLOR)
 
 O-SYMBOL = I.circle(FIELD-SYMBOL-SIZE / 2, "outline", O-COLOR)
 
 FIELD = I.square(FIELD-SIZE, "outline", "light-steel-blue")
 
-PLAY-AGAIN-BUTTON-WIDTH = 200
-PLAY-AGAIN-BUTTON-HEIGHT = 50
+PLAY-AGAIN-BTN-WIDTH = 200
+PLAY-AGAIN-BTN-HEIGHT = 50
 
-PLAY-AGAIN-BUTTON = I.overlay-align(
-  "center",
-  "center",
-  I.text("Nochmal spielen", 28, "black"),
-  I.rectangle(PLAY-AGAIN-BUTTON-WIDTH, PLAY-AGAIN-BUTTON-HEIGHT, "solid", "light-grey")
-  ) ^
-I.overlay-align("center", "center", 
-  I.empty-scene(PLAY-AGAIN-BUTTON-WIDTH, PLAY-AGAIN-BUTTON-HEIGHT), _)
+PLAY-AGAIN-BUTTON = 
+I.rectangle(200, PLAY-AGAIN-BTN-HEIGHT, "solid", "light-grey") ^
+I.overlay-align("center","center",I.text("Nochmal spielen", 28, "black"), _) ^
+I.overlay-align("center", "center", I.empty-scene(PLAY-AGAIN-BTN-WIDTH, PLAY-AGAIN-BTN-HEIGHT), _)
 
 PLAY-AGAIN-BUTTON-BOT-OFFSET = 50
 PLAY-AGAIN-BUTTON-POS = I.point(CENTER, HEIGHT - PLAY-AGAIN-BUTTON-BOT-OFFSET)

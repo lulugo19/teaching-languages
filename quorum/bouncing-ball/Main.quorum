@@ -1,0 +1,68 @@
+use Libraries.Game.Game
+use Libraries.Game.Graphics.Drawable
+use Libraries.Game.Graphics.Color
+use Libraries.Compute.Vector2
+use Libraries.Sound.Audio
+
+class Main is Game
+    constant integer WIDTH = 500
+    constant integer HEIGHT = 300
+    constant integer BALL_RADIUS = 10
+    constant integer BALL_DIAMETER = BALL_RADIUS * 2
+    
+    integer xSpeed = 100
+    integer ySpeed = 100
+    Audio bleepAudio
+    Drawable ball
+
+    action Main
+        SetScreenSize(WIDTH, HEIGHT)
+        StartGame()
+    end
+
+    action CreateGame
+        // Erstelle einen roten Kreis und platziere in in der Mitte des Fensters
+        Color color
+        ball:LoadFilledCircle(BALL_RADIUS, color:Red())
+        ball:SetPosition(WIDTH / 2, HEIGHT / 2)
+        // Füge den Ball zum Spiel hinzu
+        Add(ball)
+
+        // Lade den Audio-Clip
+        bleepAudio:Load("bleep.wav")
+    end
+
+    action Update(number seconds)
+        x = ball:GetX()
+        y = ball:GetY()
+
+        // Pralle vom linken Rand ab
+        if x < 0
+            ball:SetX(0)
+            xSpeed = xSpeed * -1
+            bleepAudio:Play()
+        // Pralle vom rechten Rand ab
+        elseif (x + BALL_DIAMETER) > WIDTH
+            ball:SetX(WIDTH - BALL_DIAMETER)
+            xSpeed = xSpeed * -1
+            bleepAudio:Play()
+        // Pralle vom unteren Rand ab
+        elseif y < 0
+            ball:SetY(0)
+            ySpeed = ySpeed * -1
+            bleepAudio:Play()
+        // Pralle vom oberen Rand ab
+        elseif (y + BALL_DIAMETER) > HEIGHT
+            ball:SetY(HEIGHT - BALL_DIAMETER)
+            ySpeed = ySpeed * -1
+            bleepAudio:Play()
+        end
+
+        // Skaliere die Geschwindigkeit mit den vergangen Sekunden
+        // und bewege den Ball
+        Vector2 velocity
+        velocity:Set(xSpeed, ySpeed)
+        velocity:Scale(seconds)
+        ball:Move(velocity)
+    end
+end

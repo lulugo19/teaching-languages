@@ -5,25 +5,26 @@ import shared-gdrive("positioned-image.arr", "1bnu9qW1_8qxHkxtOcy5w7A7DlXk-4Zuj"
 # CONSTANTS
 #---------------------
 WIDTH = 400
-HEIGHT = 500
+HEIGHT = 600
 CENTER = WIDTH / 2
 
 EMPTY-SCENE = I.empty-scene(WIDTH, HEIGHT)
 
-HEART-IMAGE = I.scale(1.8, I.image-url("https://opengameart.org/sites/default/files/heart_4.png"))
-BROCCOLI-IMAGE = I.scale(0.08, I.image-url("https://www.jing.fm/clipimg/detail/173-1733544_broccoli-png-image-free-broccoli-pictures-download-broccoli.png"))
-CAKE-IMAGE = I.scale(0.18, I.image-url("https://64.media.tumblr.com/b5271ea3c7f791befb683ab8238ac846/tumblr_orzia8ijU21ucpx1qo4_r2_500.png"))
-PET-IMAGE = I.image-url("https://opengameart.org/sites/default/files/styles/medium/public/megu21.png")
-PET-SICK-IMAGE = I.image-url("https://opengameart.org/sites/default/files/035%20small0002_0.png")
-PET-SLEEPY-IMAGE = I.scale(2, I.image-url("https://opengameart.org/sites/default/files/44small0001.png"))
-TOMBSTONE-IMAGE = I.image-url("https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/52c306f0214cb6d.png")
+HEART-IMAGE = I.image-url("https://raw.githubusercontent.com/lulugo19/teaching-languages/main/assets/tamagochi/heart.png")
+BROCCOLI-IMAGE = I.image-url("https://raw.githubusercontent.com/lulugo19/teaching-languages/main/assets/tamagochi/broccoli.png")
+CAKE-IMAGE = I.image-url("https://raw.githubusercontent.com/lulugo19/teaching-languages/main/assets/tamagochi/cake.png")
+PET-IMAGE = I.image-url("https://raw.githubusercontent.com/lulugo19/teaching-languages/main/assets/tamagochi/pet.png")
+PET-SICK-IMAGE = I.image-url("https://raw.githubusercontent.com/lulugo19/teaching-languages/main/assets/tamagochi/pet-sick.png")
+PET-SLEEPY-IMAGE = I.image-url("https://raw.githubusercontent.com/lulugo19/teaching-languages/main/assets/tamagochi/pet-asleep.png")
+TOMBSTONE-IMAGE = I.image-url("https://raw.githubusercontent.com/lulugo19/teaching-languages/main/assets/tamagochi/pet-dead.png")
+CROSS-IMAGE = I.image-url("https://raw.githubusercontent.com/lulugo19/teaching-languages/main/assets/tamagochi/cross.png")
 
 SYMBOL-Y-POS = 150
-HEART = P-IMG.pos-image(I.point(100, SYMBOL-Y-POS), HEART-IMAGE)
+HEART = P-IMG.pos-image(I.point(75, SYMBOL-Y-POS), HEART-IMAGE)
 BROCCOLI = P-IMG.pos-image(I.point(200, SYMBOL-Y-POS), BROCCOLI-IMAGE)
-CAKE = P-IMG.pos-image(I.point(300, SYMBOL-Y-POS), CAKE-IMAGE)
+CAKE = P-IMG.pos-image(I.point(325, SYMBOL-Y-POS), CAKE-IMAGE)
 
-PET-POS = I.point(WIDTH / 2, 350)
+PET-POS = I.point(WIDTH / 2, 400)
 PET-HEALTHY = P-IMG.pos-image(PET-POS, PET-IMAGE)
 PET-SICK = P-IMG.pos-image(PET-POS, PET-SICK-IMAGE)
 PET-ASLEEP = P-IMG.pos-image(PET-POS, PET-SLEEPY-IMAGE)
@@ -48,7 +49,7 @@ LOVE-BAR-COLOR = "red"
 ENERGY-BAR-Y-POS = 50
 ENERGY-BAR-COLOR = "yellow"
 
-FPS = 28
+FPS = 21
 ONE-PER-SECOND = 1 / FPS
 
 NORMAL-ENERGY-CHANGE = -1 * ONE-PER-SECOND
@@ -58,16 +59,16 @@ ASLEEP-DURATION = FPS * 10
 ASLEEP-ENERGY-CHANGE = 2 * ONE-PER-SECOND
 
 SICK-DURATION = FPS * 15
-SICK-ENERGY-CHANGE = -4 * ONE-PER-SECOND
+SICK-ENERGY-CHANGE = -3 * ONE-PER-SECOND
 
-START-LOVE = 50
-START-ENERGY = 50
+START-LOVE = 75
+START-ENERGY = 75
 
 HEART-LOVE-CHANGE = 10
-HEART-ENERGY-CHANGE = -20
+HEART-ENERGY-CHANGE = -15
 
-BROCCOLI-LOVE-CHANGE = -15
-BROCCOLI-ENERGY-CHANGE = 10
+BROCCOLI-LOVE-CHANGE = -10
+BROCCOLI-ENERGY-CHANGE = 15
 
 CAKE-ENERGY-CHANGE = 15
 CAKE-SICK-PROBABILITY = 30 # in Prozent
@@ -94,13 +95,14 @@ data Tamagochi-Symbol:
   | tama-symbol(
       img :: P-IMG.Positioned-Image,
       love-change :: Number, 
-      energy-change :: Number, 
+      energy-change :: Number,
+      disabled-debuffs :: List<Tamagochi-Debuff>,
       status-update :: (Tamagochi-Status -> Tamagochi-Status))
 end
 
-HEART-SYMBOL = tama-symbol(HEART, 20, -10, identity)
-BROCCOLI-SYMBOL = tama-symbol(BROCCOLI, -10, 10, identity)
-CAKE-SYMBOL = tama-symbol(CAKE, 0, 20, 
+HEART-SYMBOL = tama-symbol(HEART, 20, -10, [list: debuff-sick, debuff-asleep], identity)
+BROCCOLI-SYMBOL = tama-symbol(BROCCOLI, -10, 10, [list: debuff-asleep], identity)
+CAKE-SYMBOL = tama-symbol(CAKE, 0, 20, [list: debuff-sick, debuff-asleep],
   lam(s): 
     if num-random(100) < CAKE-SICK-PROBABILITY: NEW-SICK-STATUS 
     else: s end 
@@ -125,73 +127,38 @@ fun has-pet-debuff(pet, debuff):
   is-status-debuff(status) and (status.debuff == debuff)
 end
 
-# UPDATE FUNCTIONS
-#---------------------
-fun update-pet-status(pet :: Tamagochi) -> Tamagochi-Status:
-  status = pet.status
-  if pet.love == 0:
-    status-dead
-  else:
-    pet-is-asleep = has-pet-debuff(pet, debuff-asleep)
-
-    if not(pet-is-asleep) and (pet.energy <= 10):
-      NEW-SLEEP-STATUS
-    else:
-      cases(Tamagochi-Status) status:
-        | status-debuff(debuff, rem-dur) =>
-          if rem-dur == 0: status-normal 
-          else: status-debuff(debuff, rem-dur - 1) end
-        | else => status
-      end
-    end
-  end
-end
-
-fun update-pet-love(pet :: Tamagochi) -> Number:
-  clamp(pet.love + NORMAL-LOVE-CHANGE, 0, 100)
-end
-
-fun update-pet-energy(pet :: Tamagochi) -> Number:
-  energy-change = cases(Tamagochi-Status) pet.status:
-    | status-normal => NORMAL-ENERGY-CHANGE
-    | status-dead => 0
-    | status-debuff(d, _) => cases(Tamagochi-Debuff) d:
-        | debuff-sick => SICK-ENERGY-CHANGE
-        | debuff-asleep => ASLEEP-ENERGY-CHANGE
-      end
-  end
-  
-  pet.energy + energy-change
-end
-
-fun update-pet(pet :: Tamagochi) -> Tamagochi:
-  if is-status-dead(pet.status):
-    pet
-  else:
-    updated-status = update-pet-status(pet)
-    updated-love = update-pet-love(pet)
-    updated-energy = update-pet-energy(pet)
-    updated-life-time = pet.life-time + 1
-    tama-pet(updated-love, updated-energy, updated-status, updated-life-time)
-  end
-end
 
 # DRAW FUNCTIONS
 #---------------------
 fun draw-symbols(scene :: I.Image, pet :: Tamagochi):
+  
+  #|
   if has-pet-debuff(pet, debuff-asleep):
     scene
-  else:  
+  else:
     heart-and-broccoli = scene ^
     HEART.draw(_) ^
     BROCCOLI.draw(_)
 
-    should-draw-cake = not(has-pet-debuff(pet, debuff-sick))
+
 
     if should-draw-cake:
       CAKE.draw(heart-and-broccoli)
     else:
       heart-and-broccoli
+    end
+  end
+  |#
+  for fold(s from scene, sym from SYMBOLS):
+    symbol = P-IMG.pos-image-draw(sym.img, s)
+    
+    disabled = is-status-dead(pet.status) or 
+    sym.disabled-debuffs.any(lam(d): has-pet-debuff(pet, d) end)
+    
+    if disabled:
+      I.place-image(CROSS-IMAGE, sym.img.pos.x, sym.img.pos.y, symbol)
+    else:
+      symbol
     end
   end
 end
@@ -258,6 +225,57 @@ fun draw(pet :: Tamagochi) -> I.Image:
   draw-game-over-when-pet-is-dead(_, pet)
 end
 
+# UPDATE FUNCTIONS
+#---------------------
+fun update-pet-status(pet :: Tamagochi) -> Tamagochi-Status:
+  status = pet.status
+  if pet.love == 0:
+    status-dead
+  else:
+    pet-is-asleep = has-pet-debuff(pet, debuff-asleep)
+
+    if not(pet-is-asleep) and (pet.energy <= 10):
+      NEW-SLEEP-STATUS
+    else:
+      cases(Tamagochi-Status) status:
+        | status-debuff(debuff, rem-dur) =>
+          if rem-dur == 0: status-normal 
+          else: status-debuff(debuff, rem-dur - 1) end
+        | else => status
+      end
+    end
+  end
+end
+
+fun update-pet-love(pet :: Tamagochi) -> Number:
+  clamp(pet.love + NORMAL-LOVE-CHANGE, 0, 100)
+end
+
+fun update-pet-energy(pet :: Tamagochi) -> Number:
+  energy-change = cases(Tamagochi-Status) pet.status:
+    | status-normal => NORMAL-ENERGY-CHANGE
+    | status-dead => 0
+    | status-debuff(d, _) => cases(Tamagochi-Debuff) d:
+        | debuff-sick => SICK-ENERGY-CHANGE
+        | debuff-asleep => ASLEEP-ENERGY-CHANGE
+      end
+  end
+  
+  pet.energy + energy-change
+end
+
+fun update-pet(pet :: Tamagochi) -> Tamagochi:
+  if is-status-dead(pet.status):
+    pet
+  else:
+    updated-status = update-pet-status(pet)
+    updated-love = update-pet-love(pet)
+    updated-energy = update-pet-energy(pet)
+    updated-life-time = pet.life-time + 1
+    tama-pet(updated-love, updated-energy, updated-status, updated-life-time)
+  end
+end
+
 # EVENT HANDLERS
 #---------------------
 fun on-mouse(pet :: Tamagochi, mx :: Number, my :: Number, event :: String):
@@ -270,8 +288,12 @@ fun on-mouse(pet :: Tamagochi, mx :: Number, my :: Number, event :: String):
       else:
         pet
       end
-    else if not(has-pet-debuff(pet, debuff-asleep)):
-      clicked-symbol = SYMBOLS.find(lam(x): x.img.contains-point(mouse-pos) end)
+    else:
+      clicked-symbol = SYMBOLS.find(
+        lam(sym): 
+          sym.img.contains-point(mouse-pos) and 
+          not(sym.disabled-debuffs.any(lam(d): has-pet-debuff(pet, d) end))
+        end)
 
       cases (Option<Tamagochi-Symbol>) clicked-symbol:
         | some(symbol) =>
@@ -292,7 +314,7 @@ end
 
 # create world
 W.big-bang(INIT-PET, [list:
-    W.on-tick(update-pet),
     W.to-draw(draw),
+    W.on-tick(update-pet),
     W.on-mouse(on-mouse)
   ])

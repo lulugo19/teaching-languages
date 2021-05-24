@@ -6,7 +6,7 @@ class SpriteAnimation is Drawable
   private number fps = 4
 
   private number elapsedTime = 0
-  private integer frameIndex = 0
+  private integer spriteIndex = 0
 
   action SetFPS(number fps)
     me:fps = fps
@@ -26,14 +26,14 @@ class SpriteAnimation is Drawable
     if sprites:GetSize() = 0
       alert("There must be at least one sprite!")
     end
-    Load(sprites:Get(frameIndex))
+    Load(sprites:Get(spriteIndex))
   end
 
   action Update(number seconds)
     elapsedTime = elapsedTime + seconds
     if elapsedTime >= 1/fps
-      frameIndex = (frameIndex + 1) mod sprites:GetSize()
-      Load(sprites:Get(frameIndex))
+      spriteIndex = (spriteIndex + 1) mod sprites:GetSize()
+      Load(sprites:Get(spriteIndex))
       elapsedTime = elapsedTime - 1/fps
     end
   end

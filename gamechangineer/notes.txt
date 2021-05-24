@@ -1,0 +1,2 @@
+Bei Flappy Bird:
+- Performance wird immer schlechter, mit laufender Spielzeit
