@@ -1,0 +1,27 @@
+// Plaziere die Tictactoe-Felder.
+There are 9 topazes aligned 3 by 3 in the center.
+The size of the topazes is 60.
+When all the topazes are gone, game over.
+
+// Der Ball kontrolliert das Spiel.
+// Wenn auf ihn geklickt wird, dann ist Game-Over um das Spiel neuzustarten.
+The size of the ball is 50.
+When the ball is clicked, it turns yellow.
+When the ball is yellow, game over.
+
+When the original topaz is clicked, the topaz becomes notified for 0.1 second.
+When the topaz is notified, the ball becomes notified for 0.1 second.
+When the original ball becomes notified, 
+the ball becomes green and the topazes become kittyfied for 0.1 second.
+When the green ball becomes notified, 
+the ball becomes original and the topazes become puppyfied 0.1 second.
+
+When the notified topaz becomes kittyfied, the topaz inserts a kitten.
+When the notified topaz becomes puppyfied, the topaz inserts a puppy.
+
+The size of the puppies is 30.
+The size of the kittens is 30.
+
+// Die Felder verschwinden, sodass sie nicht nochmal angeklickt werden koennen.
+When a puppy touches a topaz, the topaz disappears.
+When a kitten touches a topaz, the topaz disappears.

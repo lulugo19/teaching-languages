@@ -1,0 +1,5 @@
+There is a ball.
+The angle of the ball is 45 degrees.
+The speed of the ball is 10 pixels per frame.
+The ball starts by moving forward.
+When the ball touches a border, it reverses direction.

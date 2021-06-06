@@ -1,0 +1,33 @@
+// Setting up the turtle timer.
+The turtle moves right.
+The speed of the turtle is 4 pixels per frame.
+When the turtle reaches the right border, it wraps around and it becomes yellow for 0.1 second.
+When the turtle is yellow, the turtle inserts[4, 600, 600, 0, 130] a brick and the bricks are notified for 0.1 second.
+When the brick is notified, it inserts[2, 400] a brick.
+
+// Defining the bricks.
+There are 0 bricks.
+The size of the bricks is 300.
+The angle of the bricks is 90.
+The bricks are moving left at 200 pixels per frame.
+When the position_x of the brick is less than 0, it disappears.
+
+// Increasing score
+When the turtle touches the spinstar, the spinstar becomes blue for 0.1 second.
+When the spinstar is blue, the score increases by 1.
+
+// Setting up the bird.
+The player controls the bird.
+The bird falls.
+The size of the bird is 40.
+The bird is fit.
+When space is pressed, the bird becomes energized for 0.1 second and the angle of the bird equals 0.
+When the fit bird is energized, it jumps by 5 pixels per frame.
+When the direction_y of the bird is less than 0, the angle of the bird decreases by 3.
+Otherwise, the angle of the bird increases by 3.
+When the angle of the bird is greater than 80, the angle of the bird equals 80.
+When the bird collides with a brick, it is not fit.
+When the bird is not fit, it moves down at 600 pixels per frame.
+When the bird is not fit, the angle of the bird increases by 1.
+When the bird touches the bottom border, game over.
+When the bird lands on a brick, game over.

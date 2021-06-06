@@ -1,0 +1,464 @@
+<?xml version="1.0"?>
+<!--   This is the result of saving a ToonTalk object. You can include
+this in files, email, or whatever. To decode it just use any program
+that can copy this to the Windows clipboard. For example, you can use
+Windows Notepad or WordPad program. Select all of the text
+and then use the Copy command in the Edit menu. Then it will appear
+in the ToonTalk remote control for the clipboard. You can find the
+clipboard remote control on page 30 of the Sensor notebook. Just use
+Dusty to vacuum it off the clipboard. Control-v is a shortcut for pasting. 
+   What follows is in a special code and was produced by 
+ToonTalk 3 (version 3.191). To learn more visit www.toontalk.com.
+-->
+<ToonTalkObject Language="1" Version="4" CreatedUsing="ToonTalk 3 (version 3.191)" xmlns="http://www.toontalk.com">
+ <Picture Parameter="2">
+  <ColorIndex>2</ColorIndex>
+  <Shape Code="0" Description="a rectangle"/>
+  <Geometry Z="-1">
+   <Width>15997</Width>
+   <Height>12000</Height>
+  </Geometry>
+  <Active/>
+  <SeeSome/>
+  <OnFront>
+   <Picture Parameter="1">
+    <ColorIndex>1</ColorIndex>
+    <Shape Code="0" Description="a rectangle"/>
+    <GeometricRelationToContainer RecordedLeaderWidthSquared="256000000" RecordedLeaderHeightSquared="144000000" WidthTimesLeaderWidth="322160000" HeightTimesLeaderHeight="180144000" XOffsetTimesLeaderWidth="-36048000" YOffsetTimesLeaderHeight="138036000" Z="3220"/>
+    <Active/>
+    <SeeSome/>
+    <GeometryWhenFreeAndUnflipped>
+     <Width>20135</Width>
+    </GeometryWhenFreeAndUnflipped>
+   </Picture>
+  </OnFront>
+  <OnFront>
+   <Picture Parameter="1">
+    <ColorIndex>1</ColorIndex>
+    <Shape Code="0" Description="a rectangle"/>
+    <GeometricRelationToContainer RecordedLeaderWidthSquared="256000000" RecordedLeaderHeightSquared="144000000" WidthTimesLeaderWidth="322160000" HeightTimesLeaderHeight="180144000" XOffsetTimesLeaderWidth="249472000" YOffsetTimesLeaderHeight="-21912000" Z="1954"/>
+    <Active/>
+    <SeeSome/>
+    <GeometryWhenFreeAndUnflipped>
+     <Width>20135</Width>
+    </GeometryWhenFreeAndUnflipped>
+   </Picture>
+  </OnFront>
+  <OnFront>
+   <Picture Parameter="1">
+    <ColorIndex>1</ColorIndex>
+    <Shape Code="0" Description="a rectangle"/>
+    <GeometricRelationToContainer RecordedLeaderWidthSquared="256000000" RecordedLeaderHeightSquared="144000000" WidthTimesLeaderWidth="322160000" HeightTimesLeaderHeight="180144000" XOffsetTimesLeaderWidth="-39024000" YOffsetTimesLeaderHeight="-175224000" Z="740"/>
+    <Active/>
+    <SeeSome/>
+    <GeometryWhenFreeAndUnflipped>
+     <Width>20135</Width>
+    </GeometryWhenFreeAndUnflipped>
+   </Picture>
+  </OnFront>
+  <OnFront>
+   <Picture Parameter="1">
+    <ColorIndex>1</ColorIndex>
+    <Shape Code="0" Description="a rectangle"/>
+    <GeometricRelationToContainer RecordedLeaderWidthSquared="256000000" RecordedLeaderHeightSquared="144000000" WidthTimesLeaderWidth="322160000" HeightTimesLeaderHeight="180144000" XOffsetTimesLeaderWidth="-314176000" YOffsetTimesLeaderHeight="-34104000" Z="1857"/>
+    <Active/>
+    <SeeSome/>
+    <GeometryWhenFreeAndUnflipped>
+     <Width>20135</Width>
+    </GeometryWhenFreeAndUnflipped>
+   </Picture>
+  </OnFront>
+  <OnFront>
+   <Picture GUID="kpndefipgjdelhepjljibjplnjcmlpji">
+    <BuiltIn Code="54" PictureNumber="0" Description="a ball"/>
+    <GeometricRelationToContainer RecordedLeaderWidthSquared="255904009" RecordedLeaderHeightSquared="144000000" WidthTimesLeaderWidth="19068424" HeightTimesLeaderHeight="15408000" XOffsetTimesLeaderWidth="177358739" YOffsetTimesLeaderHeight="41700000" Z="2547"/>
+    <Active/>
+    <SeeSome/>
+    <SpeedToRight>-200</SpeedToRight>
+    <SpeedToTop>200</SpeedToTop>
+    <OnBack>
+     <Robot Version="3">
+      <Label><![CDATA[set 
+speed]]></Label>
+      <ThoughtBubble>
+       <Box Parameter="4">
+        <NumberOfHoles>4</NumberOfHoles>
+        <Hole>1
+         <Integer>20
+          <Active/>
+          <Erased/>
+         </Integer>
+        </Hole>
+        <Hole>2
+         <RemoteControl Code="3" Description="SpeedtoTop" Version="2">
+          <Value>
+           <RemoteControl>0</RemoteControl>
+          </Value>
+          <Active/>
+          <Erased/>
+         </RemoteControl>
+         <Label><![CDATA[Up Speed]]></Label>
+        </Hole>
+        <Hole>3
+         <RemoteControl Code="2" Description="SpeedtoRight" Version="2">
+          <Value>
+           <RemoteControl>0</RemoteControl>
+          </Value>
+          <Active/>
+          <Erased/>
+         </RemoteControl>
+         <Label><![CDATA[Right Speed]]></Label>
+        </Hole>
+        <Hole>4
+         <TextPad>
+          <TextValue><![CDATA[yes]]></TextValue>
+          <Active/>
+         </TextPad>
+         <Label><![CDATA[Dropped?]]></Label>
+        </Hole>
+        <GeometricRelationToContainer RecordedLeaderWidthSquared="14638276" RecordedLeaderHeightSquared="17181025" WidthTimesLeaderWidth="9802212" HeightTimesLeaderHeight="6818525" XOffsetTimesLeaderWidth="2544290" YOffsetTimesLeaderHeight="8252695" Z="-2147483648"/>
+        <Active/>
+       </Box>
+       <GeometricRelationToContainer RecordedLeaderWidthSquared="19882681" RecordedLeaderHeightSquared="21344400" WidthTimesLeaderWidth="18473637" HeightTimesLeaderHeight="20780760" XOffsetTimesLeaderWidth="11588941" YOffsetTimesLeaderHeight="22485540" Z="-2147483648"/>
+       <Active/>
+       <SeeAll/>
+      </ThoughtBubble>
+      <Actions ID="166" Version="2" MadeOrMovedCount="2">
+       <GraspMagicWand>MagicWand</GraspMagicWand>
+       <UseMagicWand>MyBox.1</UseMagicWand>
+       <DropOn>MyBox.2</DropOn>
+       <UseMagicWand>MyBox.1</UseMagicWand>
+       <DropOn>MyBox.3</DropOn>
+       <DropMagicWand>MagicWand</DropMagicWand>
+      </Actions>
+      <WorkingInfo SetDownCounter="0" RecentPageNumber="0">
+       <Box Parameter="4" GUID="ldgmlookleocbhenkpdgmefpnidfijkb">
+        <NumberOfHoles>4</NumberOfHoles>
+        <Hole>1
+         <Integer>100
+          <Active/>
+         </Integer>
+        </Hole>
+        <Hole>2
+         <RemoteControl Code="3" Description="SpeedtoTop" Version="2">
+          <For>
+           <Picture Link="kpndefipgjdelhepjljibjplnjcmlpji"/>
+          </For>
+          <Value>
+           <RemoteControl>200</RemoteControl>
+          </Value>
+          <Active/>
+         </RemoteControl>
+         <Label><![CDATA[Up Speed]]></Label>
+        </Hole>
+        <Hole>3
+         <RemoteControl Code="2" Description="SpeedtoRight" Version="2">
+          <For>
+           <Picture Link="kpndefipgjdelhepjljibjplnjcmlpji"/>
+          </For>
+          <Value>
+           <RemoteControl>-200</RemoteControl>
+          </Value>
+          <Active/>
+         </RemoteControl>
+         <Label><![CDATA[Right Speed]]></Label>
+        </Hole>
+        <Hole>4
+         <RemoteControl Code="12" Description="JustDropped?" Version="2">
+          <Appearance>
+           <TextPad>
+            <TextValue><![CDATA[no]]></TextValue>
+            <Active/>
+           </TextPad>
+          </Appearance>
+          <For>
+           <Picture Link="kpndefipgjdelhepjljibjplnjcmlpji"/>
+          </For>
+          <Active/>
+         </RemoteControl>
+         <Label><![CDATA[Dropped?]]></Label>
+        </Hole>
+        <Active/>
+       </Box>
+      </WorkingInfo>
+      <Active/>
+     </Robot>
+    </OnBack>
+    <OnBack>
+     <Robot Version="3">
+      <Label><![CDATA[bounce ]]></Label>
+      <ThoughtBubble>
+       <Box Parameter="4">
+        <NumberOfHoles>2</NumberOfHoles>
+        <Hole>1
+         <RemoteControl Code="2" Description="SpeedtoRight" Version="2">
+          <Value>
+           <RemoteControl>0</RemoteControl>
+          </Value>
+          <Active/>
+          <Erased/>
+         </RemoteControl>
+         <Label><![CDATA[Right Speed]]></Label>
+        </Hole>
+        <Hole>2
+         <Picture>
+          <BuiltIn Code="53" PictureNumber="0" Description="the hit or miss cartoon"/>
+          <Active/>
+          <GeometryWhenFreeAndUnflipped>
+           <Width>1920</Width>
+           <Height>960</Height>
+          </GeometryWhenFreeAndUnflipped>
+         </Picture>
+         <Label><![CDATA[Right Collide?]]></Label>
+        </Hole>
+        <GeometricRelationToContainer RecordedLeaderWidthSquared="14638276" RecordedLeaderHeightSquared="17181025" WidthTimesLeaderWidth="9802212" HeightTimesLeaderHeight="6818525" XOffsetTimesLeaderWidth="2544290" YOffsetTimesLeaderHeight="8252695" Z="-2147483648"/>
+        <Active/>
+       </Box>
+       <GeometricRelationToContainer RecordedLeaderWidthSquared="19882681" RecordedLeaderHeightSquared="21344400" WidthTimesLeaderWidth="18473637" HeightTimesLeaderHeight="20780760" XOffsetTimesLeaderWidth="11637990" YOffsetTimesLeaderHeight="22346940" Z="-2147483648"/>
+       <Active/>
+       <SeeAll/>
+      </ThoughtBubble>
+      <Actions ID="169" Version="2" MadeOrMovedCount="1">
+       <MoveTo>NumberStack</MoveTo>
+       <MadeOrMoved TypeCode="0">1</MadeOrMoved>
+       <Grasp>1</Grasp>
+       <TypeTo KeyDescription="Backspace key" KeyCode="8">InHand</TypeTo>
+       <TypeTo KeyDescription="*" KeyCode="42">InHand</TypeTo>
+       <TypeTo KeyDescription="-" KeyCode="45">InHand</TypeTo>
+       <TypeTo KeyDescription="1" KeyCode="49">InHand</TypeTo>
+       <DropOn>MyBox.1</DropOn>
+       <TypeTo KeyDescription="+" KeyCode="43">MyBox.2</TypeTo>
+      </Actions>
+      <WorkingInfo SetDownCounter="0" RecentPageNumber="0">
+       <Box Parameter="4" GUID="iicjpidpeiflgjelkaijflhmoklgfopi">
+        <NumberOfHoles>2</NumberOfHoles>
+        <Hole>1
+         <RemoteControl Code="2" Description="SpeedtoRight" Version="2">
+          <For>
+           <Picture Link="kpndefipgjdelhepjljibjplnjcmlpji"/>
+          </For>
+          <Value>
+           <RemoteControl>-200</RemoteControl>
+          </Value>
+          <Active/>
+         </RemoteControl>
+         <Label><![CDATA[Right Speed]]></Label>
+        </Hole>
+        <Hole>2
+         <RemoteControl Code="13" Description="LeftRighthit?" Version="2">
+          <Appearance>
+           <Picture Parameter="1">
+            <BuiltIn Code="53" PictureNumber="1" Description="the hit or miss cartoon"/>
+            <Geometry Z="-2147483648">
+             <Left>16306</Left>
+             <Bottom>13891</Bottom>
+             <Width>41</Width>
+             <Height>52</Height>
+            </Geometry>
+            <Active/>
+            <GeometryWhenFreeAndUnflipped>
+             <Width>2400</Width>
+             <Height>7400</Height>
+            </GeometryWhenFreeAndUnflipped>
+           </Picture>
+          </Appearance>
+          <For>
+           <Picture Link="kpndefipgjdelhepjljibjplnjcmlpji"/>
+          </For>
+          <Active/>
+         </RemoteControl>
+         <Label><![CDATA[Right Collide?]]></Label>
+        </Hole>
+        <Active/>
+       </Box>
+      </WorkingInfo>
+      <Active/>
+     </Robot>
+    </OnBack>
+    <OnBack>
+     <Robot Version="3">
+      <Label><![CDATA[bounce ]]></Label>
+      <ThoughtBubble>
+       <Box Parameter="4">
+        <NumberOfHoles>2</NumberOfHoles>
+        <Hole>1
+         <RemoteControl Code="2" Description="SpeedtoRight" Version="2">
+          <Value>
+           <RemoteControl>0</RemoteControl>
+          </Value>
+          <Active/>
+          <Erased/>
+         </RemoteControl>
+         <Label><![CDATA[Right Speed]]></Label>
+        </Hole>
+        <Hole>2
+         <Picture>
+          <BuiltIn Code="53" PictureNumber="0" Description="the hit or miss cartoon"/>
+          <Active/>
+          <GeometryWhenFreeAndUnflipped>
+           <Width>1920</Width>
+           <Height>960</Height>
+          </GeometryWhenFreeAndUnflipped>
+         </Picture>
+         <Label><![CDATA[Right Collide?]]></Label>
+        </Hole>
+        <GeometricRelationToContainer RecordedLeaderWidthSquared="14638276" RecordedLeaderHeightSquared="17181025" WidthTimesLeaderWidth="9802212" HeightTimesLeaderHeight="6818525" XOffsetTimesLeaderWidth="2544290" YOffsetTimesLeaderHeight="8252695" Z="-2147483648"/>
+        <Active/>
+       </Box>
+       <GeometricRelationToContainer RecordedLeaderWidthSquared="19882681" RecordedLeaderHeightSquared="21344400" WidthTimesLeaderWidth="18473637" HeightTimesLeaderHeight="20780760" XOffsetTimesLeaderWidth="11637990" YOffsetTimesLeaderHeight="22346940" Z="-2147483648"/>
+       <Active/>
+       <SeeAll/>
+      </ThoughtBubble>
+      <Actions ID="169" Version="2" MadeOrMovedCount="1">
+       <MoveTo>NumberStack</MoveTo>
+       <MadeOrMoved TypeCode="0">1</MadeOrMoved>
+       <Grasp>1</Grasp>
+       <TypeTo KeyDescription="Backspace key" KeyCode="8">InHand</TypeTo>
+       <TypeTo KeyDescription="*" KeyCode="42">InHand</TypeTo>
+       <TypeTo KeyDescription="-" KeyCode="45">InHand</TypeTo>
+       <TypeTo KeyDescription="1" KeyCode="49">InHand</TypeTo>
+       <DropOn>MyBox.1</DropOn>
+       <TypeTo KeyDescription="+" KeyCode="43">MyBox.2</TypeTo>
+      </Actions>
+      <WorkingInfo SetDownCounter="0" RecentPageNumber="0">
+       <Box Parameter="4" GUID="kljeifkhhjbpbaeojaihmobfclmjognk">
+        <NumberOfHoles>2</NumberOfHoles>
+        <Hole>1
+         <RemoteControl Code="3" Description="SpeedtoTop" Version="2">
+          <For>
+           <Picture Link="kpndefipgjdelhepjljibjplnjcmlpji"/>
+          </For>
+          <Value>
+           <RemoteControl>200</RemoteControl>
+          </Value>
+          <Active/>
+         </RemoteControl>
+         <Label><![CDATA[Up Speed]]></Label>
+        </Hole>
+        <Hole>2
+         <RemoteControl Code="14" Description="UpDownhit?" Version="2">
+          <Appearance>
+           <Picture Parameter="1">
+            <BuiltIn Code="53" PictureNumber="1" Description="the hit or miss cartoon"/>
+            <Geometry Z="-2147483648">
+             <Left>15710</Left>
+             <Bottom>13341</Bottom>
+             <Width>41</Width>
+             <Height>52</Height>
+            </Geometry>
+            <Active/>
+            <GeometryWhenFreeAndUnflipped>
+             <Width>2400</Width>
+             <Height>7400</Height>
+            </GeometryWhenFreeAndUnflipped>
+           </Picture>
+          </Appearance>
+          <For>
+           <Picture Link="kpndefipgjdelhepjljibjplnjcmlpji"/>
+          </For>
+          <Active/>
+         </RemoteControl>
+         <Label><![CDATA[Up Collide?]]></Label>
+        </Hole>
+        <Active/>
+       </Box>
+      </WorkingInfo>
+      <Active/>
+     </Robot>
+    </OnBack>
+    <OnBack>
+     <Robot Version="3">
+      <Label><![CDATA[sound]]></Label>
+      <ThoughtBubble>
+       <Box Parameter="4">
+        <NumberOfHoles>2</NumberOfHoles>
+        <Hole>1
+         <Picture>
+          <BuiltIn Code="53" PictureNumber="0" Description="the hit or miss cartoon"/>
+          <Active/>
+          <GeometryWhenFreeAndUnflipped>
+           <Width>1920</Width>
+           <Height>960</Height>
+          </GeometryWhenFreeAndUnflipped>
+         </Picture>
+         <Label><![CDATA[Collide?]]></Label>
+        </Hole>
+        <Hole>2
+         <BuiltInSound Index="48">
+          <TextValue><![CDATA[Twing]]></TextValue>
+          <Active/>
+         </BuiltInSound>
+        </Hole>
+        <GeometricRelationToContainer RecordedLeaderWidthSquared="14638276" RecordedLeaderHeightSquared="17181025" WidthTimesLeaderWidth="9802212" HeightTimesLeaderHeight="6818525" XOffsetTimesLeaderWidth="2544290" YOffsetTimesLeaderHeight="8252695" Z="-2147483648"/>
+        <Active/>
+       </Box>
+       <GeometricRelationToContainer RecordedLeaderWidthSquared="19882681" RecordedLeaderHeightSquared="21344400" WidthTimesLeaderWidth="18473637" HeightTimesLeaderHeight="20780760" XOffsetTimesLeaderWidth="11972415" YOffsetTimesLeaderHeight="22485540" Z="-2147483648"/>
+       <Active/>
+       <SeeAll/>
+      </ThoughtBubble>
+      <Actions ID="170" Version="2" MadeOrMovedCount="0">
+       <TypeTo KeyDescription=" " KeyCode="32">MyBox.2</TypeTo>
+      </Actions>
+      <WorkingInfo SetDownCounter="0" RecentPageNumber="0">
+       <Box Parameter="4" GUID="acgpgmgoiiloeiebibajgegnjldlimbp">
+        <NumberOfHoles>2</NumberOfHoles>
+        <Hole>1
+         <RemoteControl Code="7" Description="Colliding?" Version="2">
+          <Appearance>
+           <Picture Parameter="1">
+            <BuiltIn Code="53" PictureNumber="1" Description="the hit or miss cartoon"/>
+            <Geometry Z="-2147483648">
+             <Left>16255</Left>
+             <Bottom>13341</Bottom>
+             <Width>41</Width>
+             <Height>52</Height>
+            </Geometry>
+            <Active/>
+            <GeometryWhenFreeAndUnflipped>
+             <Width>2400</Width>
+             <Height>7400</Height>
+            </GeometryWhenFreeAndUnflipped>
+           </Picture>
+          </Appearance>
+          <For>
+           <Picture Link="kpndefipgjdelhepjljibjplnjcmlpji"/>
+          </For>
+          <Active/>
+         </RemoteControl>
+         <Label><![CDATA[Collide?]]></Label>
+        </Hole>
+        <Hole>2
+         <BuiltInSound Index="48">
+          <TextValue><![CDATA[Twing]]></TextValue>
+          <Active/>
+         </BuiltInSound>
+        </Hole>
+        <Active/>
+       </Box>
+      </WorkingInfo>
+      <Active/>
+     </Robot>
+    </OnBack>
+    <OnBack>
+     <Box Link="ldgmlookleocbhenkpdgmefpnidfijkb"/>
+    </OnBack>
+    <OnBack>
+     <Box Link="iicjpidpeiflgjelkaijflhmoklgfopi"/>
+    </OnBack>
+    <OnBack>
+     <Box Link="kljeifkhhjbpbaeojaihmobfclmjognk"/>
+    </OnBack>
+    <OnBack>
+     <Box Link="acgpgmgoiiloeiebibajgegnjldlimbp"/>
+    </OnBack>
+    <GeometryWhenFreeAndUnflipped>
+     <Width>1260</Width>
+     <Height>1260</Height>
+    </GeometryWhenFreeAndUnflipped>
+   </Picture>
+  </OnFront>
+  <GeometryWhenFreeAndUnflipped>
+   <Width>16000</Width>
+  </GeometryWhenFreeAndUnflipped>
+ </Picture>
+</ToonTalkObject>

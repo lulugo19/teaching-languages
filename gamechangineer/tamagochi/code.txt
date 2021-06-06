@@ -1,0 +1,49 @@
+There is a unicorn in the center.
+The size of the unicorn is 200.
+The energy of the unicorn is 75.
+The love of the unicorn is 75.
+The energy of the unicorn is displayed.
+The love of the unicorn is displayed.
+
+The size of the broccoli is 70.
+The size of the cake is 70.
+The size of the apricot is 70.
+
+The love of the unicorn decreases by 0.0333.
+When the love of the unicorn is less than 0, the unicorn explodes.
+When the unicorn is dead, game over.
+
+When the unicorn is blue, the energy of the unicorn increases by 0.0666.
+When the unicorn is green, the energy of the unicorn decreases by 0.0999.
+Otherwise the the energy of the unicorn decreases by 0.0333.
+
+The score is initially 0.
+When the love of the unicorn is greater than 0, the score increases by 0.0333.
+
+When the love of the unicorn is greater than 100, the love of the unicorn equals 100.
+When the energy of the unicorn is greater than 100, the energy of the unicorn equals 100.
+When the energy of the unicorn is less than 0, the energy equals 0.
+When the energy of the unicorn is less than 11, the unicorn turns blue for 10 seconds.
+
+When the original broccoli is clicked, the broccoli becomes active for 0.1 second.
+When the original cake is clicked, the cake becomes active for 0.1 second.
+When the original apricot is clicked, the apricot becomes active for 0.1 second.
+
+When the broccoli is active, the unicorn becomes healthy for 0.1 second.
+When the unicorn is healthy, the love of the unicorn decreases by 1.
+When the unicorn is healthy, the energy of the unicorn increases by 1.5.
+
+When the apricot is active, the unicorn becomes loved for 0.1 second.
+When the unicorn is loved, the love of the unicorn increases by 1.
+When the unicorn is loved, the energy of the unicorn decreases by 1.5.
+
+When the cake is active, the unicorn become sweet for 0.1 second.
+When the unicorn is sweet, the energy of the unicorn increase by 1.5.
+When the unicorn is sweet, the unicorn turns green for 15 seconds with a 30 percent probability.
+
+When the unicorn turns blue, the broccoli turns red for 0.1 second.
+When the unicorn turns blue, the apricot turns red for 0.1 second.
+When the unicorn turns blue, the cake turns red for 0.1 second.
+
+When the unicorn turns green, the cake turns red for 0.1 second.
+When the unicorn turns green, the apricot turns red for 0.1 second.
