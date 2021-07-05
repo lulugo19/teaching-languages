@@ -1,3 +1,5 @@
+The canvas is pink.
+
 There is a unicorn in the center.
 The size of the unicorn is 200.
 The energy of the unicorn is 75.

@@ -1,0 +1,17 @@
+class Main
+    action Main
+        integer n = cast(integer, input("Welche Fibonacci-Zahl soll berechnet werden: "))
+        integer result = Fib(n)
+        output "Die " + n + "." + " Fibonacci-Zahl ist: " + result
+    end
+  
+    action Fib(integer n)
+        if n <= 0
+            alert(n + " muss größer 0 sein!")
+        elseif n = 1 or n = 2
+            return 1
+        else
+            return Fib(n-1) + Fib(n-2)
+        end
+    end
+end

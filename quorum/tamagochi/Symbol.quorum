@@ -28,7 +28,7 @@ class Symbol is Drawable, MouseListener
     end
 
     action ClickedMouse(MouseEvent event)
-        if enabled
+        if enabled and event:IsClicked() and event:IsLeftButtonEvent()
             ApplyToPet()
         end
     end

@@ -1,0 +1,279 @@
+<?xml version="1.0"?>
+<!--   This is the result of saving a ToonTalk object. You can include
+this in files, email, or whatever. To decode it just use any program
+that can copy this to the Windows clipboard. For example, you can use
+Windows Notepad or WordPad program. Select all of the text
+and then use the Copy command in the Edit menu. Then it will appear
+in the ToonTalk remote control for the clipboard. You can find the
+clipboard remote control on page 30 of the Sensor notebook. Just use
+Dusty to vacuum it off the clipboard. Control-v is a shortcut for pasting. 
+   What follows is in a special code and was produced by 
+ToonTalk 3 (version 3.191). To learn more visit www.toontalk.com.
+-->
+<ToonTalkObject Language="1" Version="4" CreatedUsing="ToonTalk 3 (version 3.191)" xmlns="http://www.toontalk.com">
+ <Robot Version="3">
+  <Label><![CDATA[fib1]]></Label>
+  <ThoughtBubble>
+   <Box>
+    <NumberOfHoles>2</NumberOfHoles>
+    <Hole>1
+     <Integer>1
+      <Active/>
+     </Integer>
+    </Hole>
+    <Hole>2
+     <Bird Parameter="8">
+      <Active/>
+      <SeeSome/>
+      <Erased/>
+     </Bird>
+    </Hole>
+    <GeometricRelationToContainer RecordedLeaderWidthSquared="14638276" RecordedLeaderHeightSquared="16834609" WidthTimesLeaderWidth="9802212" HeightTimesLeaderHeight="6749435" XOffsetTimesLeaderWidth="2544290" YOffsetTimesLeaderHeight="8091116" Z="-2"/>
+    <Active/>
+   </Box>
+   <GeometricRelationToContainer RecordedLeaderWidthSquared="19882681" RecordedLeaderHeightSquared="21344400" WidthTimesLeaderWidth="18473637" HeightTimesLeaderHeight="20780760" XOffsetTimesLeaderWidth="13840736" YOffsetTimesLeaderHeight="23478840" Z="0"/>
+   <Active/>
+   <SeeAll/>
+  </ThoughtBubble>
+  <Actions ID="160" Version="2" MadeOrMovedCount="2">
+   <MoveTo>NumberStack</MoveTo>
+   <MadeOrMoved TypeCode="0">1</MadeOrMoved>
+   <Grasp>1</Grasp>
+   <GiveBird>MyBox.2</GiveBird>
+   <MoveTo>BombStack</MoveTo>
+   <MadeOrMoved TypeCode="13">2</MadeOrMoved>
+   <Grasp>2</Grasp>
+   <Use></Use>
+  </Actions>
+  <Next>
+   <Robot Version="3">
+    <Label><![CDATA[fib2]]></Label>
+    <ThoughtBubble>
+     <Box>
+      <NumberOfHoles>2</NumberOfHoles>
+      <Hole>1
+       <Integer>2
+        <Active/>
+       </Integer>
+      </Hole>
+      <Hole>2
+       <Bird Parameter="8">
+        <Active/>
+        <SeeSome/>
+        <Erased/>
+       </Bird>
+      </Hole>
+      <GeometricRelationToContainer RecordedLeaderWidthSquared="14638276" RecordedLeaderHeightSquared="16834609" WidthTimesLeaderWidth="9802212" HeightTimesLeaderHeight="6749435" XOffsetTimesLeaderWidth="2544290" YOffsetTimesLeaderHeight="8091116" Z="-2"/>
+      <Active/>
+     </Box>
+     <GeometricRelationToContainer RecordedLeaderWidthSquared="19882681" RecordedLeaderHeightSquared="21344400" WidthTimesLeaderWidth="18473637" HeightTimesLeaderHeight="20780760" XOffsetTimesLeaderWidth="13840736" YOffsetTimesLeaderHeight="23478840" Z="2"/>
+     <Active/>
+     <SeeAll/>
+    </ThoughtBubble>
+    <Actions ID="161" Version="2" MadeOrMovedCount="2">
+     <MoveTo>NumberStack</MoveTo>
+     <MadeOrMoved TypeCode="0">1</MadeOrMoved>
+     <Grasp>1</Grasp>
+     <GiveBird>MyBox.2</GiveBird>
+     <MoveTo>BombStack</MoveTo>
+     <MadeOrMoved TypeCode="13">2</MadeOrMoved>
+     <Grasp>2</Grasp>
+     <Use></Use>
+    </Actions>
+    <Next>
+     <Robot Version="3">
+      <Label><![CDATA[add]]></Label>
+      <ThoughtBubble>
+       <Box>
+        <NumberOfHoles>3</NumberOfHoles>
+        <Hole>1
+         <Integer>1
+          <Active/>
+          <Erased/>
+         </Integer>
+        </Hole>
+        <Hole>2
+         <Integer>1
+          <Active/>
+          <Erased/>
+         </Integer>
+        </Hole>
+        <Hole>3
+         <Bird Parameter="8">
+          <Active/>
+          <SeeSome/>
+          <Erased/>
+         </Bird>
+        </Hole>
+        <GeometricRelationToContainer RecordedLeaderWidthSquared="14638276" RecordedLeaderHeightSquared="16834609" WidthTimesLeaderWidth="9802212" HeightTimesLeaderHeight="6749435" XOffsetTimesLeaderWidth="2544290" YOffsetTimesLeaderHeight="8091116" Z="-2"/>
+        <Active/>
+       </Box>
+       <GeometricRelationToContainer RecordedLeaderWidthSquared="19882681" RecordedLeaderHeightSquared="21344400" WidthTimesLeaderWidth="18473637" HeightTimesLeaderHeight="20780760" XOffsetTimesLeaderWidth="13840736" YOffsetTimesLeaderHeight="23478840" Z="4"/>
+       <Active/>
+       <SeeAll/>
+      </ThoughtBubble>
+      <Actions ID="162" Version="2" MadeOrMovedCount="2">
+       <Grasp>MyBox.1</Grasp>
+       <Drop>1</Drop>
+       <Grasp>MyBox.2</Grasp>
+       <DropOn>1</DropOn>
+       <Grasp>1</Grasp>
+       <GiveBird>MyBox.3</GiveBird>
+       <MoveTo>BombStack</MoveTo>
+       <MadeOrMoved TypeCode="13">2</MadeOrMoved>
+       <Grasp>2</Grasp>
+       <Use></Use>
+      </Actions>
+      <Next>
+       <Robot Version="3">
+        <Label><![CDATA[fib(n)]]></Label>
+        <ThoughtBubble>
+         <Box>
+          <NumberOfHoles>2</NumberOfHoles>
+          <Hole>1
+           <Integer>3
+            <Active/>
+            <Erased/>
+           </Integer>
+          </Hole>
+          <Hole>2
+           <Bird Parameter="8">
+            <Active/>
+            <SeeSome/>
+            <Erased/>
+           </Bird>
+          </Hole>
+          <GeometricRelationToContainer RecordedLeaderWidthSquared="14638276" RecordedLeaderHeightSquared="16834609" WidthTimesLeaderWidth="9802212" HeightTimesLeaderHeight="6749435" XOffsetTimesLeaderWidth="2544290" YOffsetTimesLeaderHeight="8091116" Z="-2"/>
+          <Active/>
+         </Box>
+         <GeometricRelationToContainer RecordedLeaderWidthSquared="19882681" RecordedLeaderHeightSquared="21344400" WidthTimesLeaderWidth="18473637" HeightTimesLeaderHeight="20780760" XOffsetTimesLeaderWidth="13840736" YOffsetTimesLeaderHeight="23478840" Z="6"/>
+         <Active/>
+         <SeeAll/>
+        </ThoughtBubble>
+        <Actions ID="164" Version="2" MadeOrMovedCount="18">
+         <Grasp>MyBox.2</Grasp>
+         <Drop>1</Drop>
+         <MoveTo>BoxStack</MoveTo>
+         <MadeOrMoved TypeCode="10">2</MadeOrMoved>
+         <Grasp>2</Grasp>
+         <Drop>2</Drop>
+         <MoveTo>BoxStack</MoveTo>
+         <MadeOrMoved TypeCode="10">3</MadeOrMoved>
+         <Grasp>3</Grasp>
+         <DropOnRightSide>2</DropOnRightSide>
+         <MoveTo>BoxStack</MoveTo>
+         <MadeOrMoved TypeCode="10">4</MadeOrMoved>
+         <Grasp>4</Grasp>
+         <DropOnRightSide>2</DropOnRightSide>
+         <Grasp>1</Grasp>
+         <DropOn>2.3</DropOn>
+         <Grasp>MyBox</Grasp>
+         <Drop>MyBox</Drop>
+         <GraspMagicWand>MagicWand</GraspMagicWand>
+         <UseMagicWand>MyBox</UseMagicWand>
+         <Drop>5</Drop>
+         <DropMagicWand>MagicWand</DropMagicWand>
+         <MoveTo>NumberStack</MoveTo>
+         <MadeOrMoved TypeCode="0">6</MadeOrMoved>
+         <Grasp>6</Grasp>
+         <TypeTo KeyDescription="Backspace key" KeyCode="8">InHand</TypeTo>
+         <TypeTo KeyDescription="2" KeyCode="50">InHand</TypeTo>
+         <TypeTo KeyDescription="-" KeyCode="45">InHand</TypeTo>
+         <TypeTo KeyDescription="2" KeyCode="50">InHand</TypeTo>
+         <TypeTo KeyDescription="Backspace key" KeyCode="8">InHand</TypeTo>
+         <TypeTo KeyDescription="Backspace key" KeyCode="8">InHand</TypeTo>
+         <TypeTo KeyDescription="Backspace key" KeyCode="8">InHand</TypeTo>
+         <TypeTo KeyDescription="-" KeyCode="45">InHand</TypeTo>
+         <TypeTo KeyDescription="2" KeyCode="50">InHand</TypeTo>
+         <DropOn>MyBox.1</DropOn>
+         <MoveTo>NumberStack</MoveTo>
+         <MadeOrMoved TypeCode="0">7</MadeOrMoved>
+         <Grasp>7</Grasp>
+         <TypeTo KeyDescription="-" KeyCode="45">InHand</TypeTo>
+         <DropOn>5.1</DropOn>
+         <MoveTo>NestStack</MoveTo>
+         <MadeOrMoved TypeCode="6">8</MadeOrMoved>
+         <GraspNest>8</GraspNest>
+         <MadeOrMoved TypeCode="7">9</MadeOrMoved>
+         <Drop>8</Drop>
+         <Grasp>9</Grasp>
+         <DropOn>MyBox.2</DropOn>
+         <GraspNest>8</GraspNest>
+         <DropOn>2.1</DropOn>
+         <MoveTo>NestStack</MoveTo>
+         <MadeOrMoved TypeCode="6">10</MadeOrMoved>
+         <GraspNest>10</GraspNest>
+         <MadeOrMoved TypeCode="7">11</MadeOrMoved>
+         <Drop>10</Drop>
+         <Grasp>11</Grasp>
+         <DropOn>5.2</DropOn>
+         <GraspNest>10</GraspNest>
+         <DropOn>2.2</DropOn>
+         <Grasp>MyBox</Grasp>
+         <Drop>MyBox</Drop>
+         <Grasp>5</Grasp>
+         <Drop>5</Drop>
+         <MoveTo>TruckStack</MoveTo>
+         <MadeOrMoved TypeCode="8">12</MadeOrMoved>
+         <Grasp>12</Grasp>
+         <Drop>12</Drop>
+         <TypeTo KeyDescription="+" KeyCode="43">MagicWand</TypeTo>
+         <GraspMagicWand>MagicWand</GraspMagicWand>
+         <TypeTo KeyDescription="+" KeyCode="43">InHand</TypeTo>
+         <UseMagicWand></UseMagicWand>
+         <Drop>13</Drop>
+         <DropMagicWand>MagicWand</DropMagicWand>
+         <Grasp>13</Grasp>
+         <DropInTruck>12</DropInTruck>
+         <GraspMagicWand>MagicWand</GraspMagicWand>
+         <TypeTo KeyDescription="-" KeyCode="45">InHand</TypeTo>
+         <TypeTo KeyDescription="-" KeyCode="45">InHand</TypeTo>
+         <DropMagicWand>MagicWand</DropMagicWand>
+         <GraspMagicWand>MagicWand</GraspMagicWand>
+         <DropMagicWand>MagicWand</DropMagicWand>
+         <MoveTo>TruckStack</MoveTo>
+         <MadeOrMoved TypeCode="8">14</MadeOrMoved>
+         <Grasp>14</Grasp>
+         <Drop>14</Drop>
+         <MoveTo>TruckStack</MoveTo>
+         <MadeOrMoved TypeCode="8">15</MadeOrMoved>
+         <Grasp>15</Grasp>
+         <Drop>15</Drop>
+         <GraspMagicWand>MagicWand</GraspMagicWand>
+         <TypeTo KeyDescription="+" KeyCode="43">InHand</TypeTo>
+         <TypeTo KeyDescription="+" KeyCode="43">InHand</TypeTo>
+         <UseMagicWand></UseMagicWand>
+         <DropInTruck>14</DropInTruck>
+         <UseMagicWand></UseMagicWand>
+         <DropInTruck>15</DropInTruck>
+         <DropMagicWand>MagicWand</DropMagicWand>
+         <Grasp>5</Grasp>
+         <DropInTruck>12</DropInTruck>
+         <Grasp>MyBox</Grasp>
+         <DropInTruck>14</DropInTruck>
+         <Grasp>2</Grasp>
+         <DropInTruck>15</DropInTruck>
+         <MoveTo>BombStack</MoveTo>
+         <MadeOrMoved TypeCode="13">18</MadeOrMoved>
+         <Grasp>18</Grasp>
+         <Use></Use>
+        </Actions>
+        <GeometricRelationToContainer RecordedLeaderWidthSquared="16957924" RecordedLeaderHeightSquared="17757796" WidthTimesLeaderWidth="16957924" HeightTimesLeaderHeight="17757796" XOffsetTimesLeaderWidth="10764452" YOffsetTimesLeaderHeight="14146398" Z="5"/>
+        <Active/>
+       </Robot>
+      </Next>
+      <GeometricRelationToContainer RecordedLeaderWidthSquared="16957924" RecordedLeaderHeightSquared="17757796" WidthTimesLeaderWidth="16957924" HeightTimesLeaderHeight="17757796" XOffsetTimesLeaderWidth="10764452" YOffsetTimesLeaderHeight="14146398" Z="3"/>
+      <Active/>
+     </Robot>
+    </Next>
+    <GeometricRelationToContainer RecordedLeaderWidthSquared="16957924" RecordedLeaderHeightSquared="17757796" WidthTimesLeaderWidth="16957924" HeightTimesLeaderHeight="17757796" XOffsetTimesLeaderWidth="10764452" YOffsetTimesLeaderHeight="14146398" Z="1"/>
+    <Active/>
+   </Robot>
+  </Next>
+  <Geometry Z="-1">
+   <Width>4118</Width>
+   <Height>4214</Height>
+  </Geometry>
+  <Active/>
+ </Robot>
+</ToonTalkObject>

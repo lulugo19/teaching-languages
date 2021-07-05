@@ -105,8 +105,8 @@ class Main is Game, MouseListener, Behavior
     end
 
     action ClickedMouse(MouseEvent event)   
-        Item source = event:GetSource()
-        if not gameOver
+        if not gameOver and event:IsClicked() and event:IsLeftButtonEvent()
+            Item source = event:GetSource()
             Field field = cast(Field, source)
             if field:GetSymbol() = ""
                 field:SetSymbol(player)
@@ -267,4 +267,3 @@ class Main is Game, MouseListener, Behavior
 
     end
 end
-

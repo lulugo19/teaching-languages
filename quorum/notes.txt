@@ -1,5 +1,8 @@
 Positiv:
-
+- Accessability, Screen-Readers, Braiile-Display
+- Type Inference
+- Web IDE
+- Type Coercion (Number + String)
 
 Negativ:
 - IDE ist buggy und stürzt ab, darum ohne IDE was so "Mäh" ist
@@ -7,6 +10,7 @@ Negativ:
 - Dokumentation ist schlecht navigierbar, keine Suchleiste oder Seitenleiste
 - Kein "break" oder "continue" in Schleifen
 - Kein "return" ohne Rückgabewert
+- Der Main-Methode können keine Konsolenargumente übergeben werden
 
 
 Fehlermeldungen:

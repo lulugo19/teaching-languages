@@ -131,24 +131,6 @@ end
 # DRAW FUNCTIONS
 #---------------------
 fun draw-symbols(scene :: I.Image, pet :: Tamagochi):
-  
-  #|
-  if has-pet-debuff(pet, debuff-asleep):
-    scene
-  else:
-    heart-and-broccoli = scene ^
-    HEART.draw(_) ^
-    BROCCOLI.draw(_)
-
-
-
-    if should-draw-cake:
-      CAKE.draw(heart-and-broccoli)
-    else:
-      heart-and-broccoli
-    end
-  end
-  |#
   for fold(s from scene, sym from SYMBOLS):
     symbol = P-IMG.pos-image-draw(sym.img, s)
     
@@ -292,7 +274,7 @@ fun on-mouse(pet :: Tamagochi, mx :: Number, my :: Number, event :: String):
       clicked-symbol = SYMBOLS.find(
         lam(sym): 
           sym.img.contains-point(mouse-pos) and 
-          not(sym.disabled-debuffs.any(lam(d): has-pet-debuff(pet, d) end))
+          not(sym.disabled-debuffs.any(has-pet-debuff(pet, _)))
         end)
 
       cases (Option<Tamagochi-Symbol>) clicked-symbol:
