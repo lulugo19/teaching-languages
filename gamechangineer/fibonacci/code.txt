@@ -1,0 +1,13 @@
+There is a dino.
+The initial f1 of the dino is 1.
+The initial f1 of the dino is displayed.
+The initial f2 of the dino is 1.
+The initial temp of the dino is 1.
+The initial num of the dino is 1.
+
+When the dino is not dead, the temp of the dino is the f2 of the dino.
+The f2 of the dino increases by the f1 of the dino.
+When the dino is not dead, the f1 of the dino is the temp of the dino.
+The num of the dino increases by 1.
+
+When the num of the dino is 10, game over.
