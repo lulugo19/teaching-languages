@@ -1,5 +1,6 @@
-# Evaluation of *Teaching Languages* using the example of computer games
+# Comparison and evaluation of language teaching,using the example of the implementation of computer games
 This repository is created as part of my [bachelor thesis](./BA_Bewertung_und_Vergleich_von_Teaching_Languages.pdf) in which *Teaching Languages* where examined.
+The bachelor thesis was written in German and hasn't been translated yet in English or another language.
 
 Examination and evaluation of programming languages that are beginner friendly and easy to learn and teach (*Teaching Languages*).
 
